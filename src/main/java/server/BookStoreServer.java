@@ -1,8 +1,8 @@
 package server;
 
-import com.endpoint.examples.bookstore.BookAuthorRequest;
 import com.endpoint.examples.bookstore.BookResponse;
 import com.endpoint.examples.bookstore.BookServiceGrpc;
+import com.endpoint.examples.bookstore.GetBookAuthorRequest;
 import com.endpoint.examples.bookstore.GetBookRequest;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -79,12 +79,10 @@ class BookStoreServiceImpl extends BookServiceGrpc.BookServiceImplBase {
 
   @Override
   public void getBookViaAuthor(
-      BookAuthorRequest request, StreamObserver<BookResponse> responseObserver) {
+          GetBookAuthorRequest request, StreamObserver<BookResponse> responseObserver) {
     BookResponse.Builder response = BookResponse.newBuilder();
 
     String author = request.getAuthor();
-
-    System.out.println("Author Request: " + author);
 
     if (author.equals("Bob")) {
       response.setResponseCode("200").setMessage("Success").build();

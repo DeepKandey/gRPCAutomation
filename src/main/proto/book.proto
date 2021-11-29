@@ -9,7 +9,7 @@ option objc_class_prefix = "HLI";
 
 service BookService{
   rpc GetBook (GetBookRequest) returns (BookResponse){}
-  rpc GetBookViaAuthor (BookAuthorRequest) returns (BookResponse){}
+  rpc GetBookViaAuthor (GetBookAuthorRequest) returns (BookResponse){}
 }
 
 message BookResponse{
@@ -21,6 +21,6 @@ message GetBookRequest{
   int32 isbn = 1;
 }
 
-message BookAuthorRequest{
+message GetBookAuthorRequest{
   string author = 1;
 }

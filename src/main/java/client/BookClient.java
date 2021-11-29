@@ -1,8 +1,8 @@
 package client;
 
-import com.endpoint.examples.bookstore.BookAuthorRequest;
 import com.endpoint.examples.bookstore.BookResponse;
 import com.endpoint.examples.bookstore.BookServiceGrpc;
+import com.endpoint.examples.bookstore.GetBookAuthorRequest;
 import com.endpoint.examples.bookstore.GetBookRequest;
 import exception.AuthorNotFoundException;
 import exception.BookNotFoundException;
@@ -31,9 +31,9 @@ public class BookClient {
 
   public BookResponse getBookByAuthor(String authorName) throws AuthorNotFoundException {
     try {
-      BookAuthorRequest getBookRequest =
-          BookAuthorRequest.newBuilder().setAuthor(authorName).build();
-      return bookServiceStub.getBookViaAuthor(getBookRequest);
+      GetBookAuthorRequest getBookAuthorRequest =
+          GetBookAuthorRequest.newBuilder().setAuthor(authorName).build();
+      return bookServiceStub.getBookViaAuthor(getBookAuthorRequest);
     } catch (Exception e) {
       System.out.println(e.getMessage());
       throw new AuthorNotFoundException("Author details not found");
